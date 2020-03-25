@@ -1,7 +1,6 @@
 const admin = require("firebase-admin");
 const serverKey = require("../serverKey.json")
 const { Storage } = require('@google-cloud/storage');
-const path = require("path");
 const uuid = require("uuid");
 
 const projectID = 'dp-proj-75928';
@@ -38,9 +37,7 @@ const storage = new Storage({
 const bucket = storage.bucket('dp-proj-75928.appspot.com');
 
 const uploadFile = async (inputImage) => {
-  const inputImagePath = path.join(__dirname, "../images/"+inputImage);
-  console.log(inputImagePath);
-  await bucket.upload(inputImagePath, options).then((response)=> {
+  await bucket.upload(inputImage, options).then((response)=> {
     console.log("Image uploaded!");
   });
 }

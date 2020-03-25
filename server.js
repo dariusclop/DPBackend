@@ -3,13 +3,16 @@ const express = require("express");
 const firebaseService = require("./services/firebase");
 
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 app.get('/', function(req, res) {
   res.send('on localhost server');
 })
 
 app.post('/image/upload', function(req, res) {
-  //firebaseService.uploadFile();
+  // firebaseService.uploadFile();
   res.send('image upload');
 })
 
