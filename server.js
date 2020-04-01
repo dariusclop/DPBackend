@@ -24,6 +24,7 @@ app.post('/image/upload',  function(req, res) {
         return res.status(422).send({errors: [{title: 'File Upload Error', detail: err.message}] });
     }else{
         console.log(req.file);
+        firebaseService.uploadFile(req.file.path);
         return res.send('image uploaded');
     }
 })
