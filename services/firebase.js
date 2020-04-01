@@ -37,7 +37,8 @@ const storage = new Storage({
 const bucket = storage.bucket('dp-proj-75928.appspot.com');
 
 const uploadFile = async (inputImage) => {
-  await bucket.upload(inputImage, options).then((response)=> {
+  const inputImagePath = path.join(__dirname, "../uploads/" + inputImage);
+  await bucket.upload(inputImagePath, options).then((response)=> {
     console.log("Image uploaded!");
   });
 }
