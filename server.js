@@ -11,7 +11,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(bodyParser());
 
-const singleUpload = upload.single('newImage');
+const singleUpload = upload.single('image');
 
 app.get('/', function(req, res) {
   res.send('on localhost server');
@@ -23,10 +23,8 @@ app.post('/image/upload',  function(req, res) {
     if (err) {
         return res.status(422).send({errors: [{title: 'File Upload Error', detail: err.message}] });
     }else{
-        imageName =  req.file.filename;
-        console.log(req.file.path);
-        var imagePath = req.file.path;
-        return res.send({success:true,  imageName});
+        console.log(req.file);
+        return res.send('image uploaded');
     }
 })
 })
