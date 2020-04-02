@@ -1,0 +1,15 @@
+<div class="card">
+  <p>Below you have to <b>upload an image</b> which is going to be send and save on our db
+    and fetch by the mobile application.</p>
+  <div class="uploadSection">
+    <input class="fileInput" [placeholder]="fileName">
+    <input class="inputfile" style="display: none;" type="file" accept="image/*" (change)="onFileChanged($event)"
+      #fileInput>
+    <button class="required" (click)="fileInput.click()">Upload image</button>
+  </div>
+  <div class="saveSection">
+    <button class="saveButoon" (click)="saveFile()">Save</button>
+  </div>
+  <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+  <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+</div>

@@ -6,17 +6,6 @@ const path = require("path");
 
 const projectID = 'dp-proj-75928';
 
-const options = {
-  destination: 'kekw.jpg',
-  metadata: {
-      contentType: 'image/jpg',
-      cacheControl: 'public, max-age=31536000',
-      metadata: {
-        firebaseStorageDownloadTokens: uuid.v4(),
-      }
-  }
-};
-
 admin.initializeApp({
   credential: admin.credential.cert(serverKey),
   databaseURL: "https://dp-proj-75928.firebaseio.com/"
@@ -37,7 +26,17 @@ const storage = new Storage({
 
 const bucket = storage.bucket('dp-proj-75928.appspot.com');
 
-const uploadFile = async (inputImage) => {
+const uploadFile = async (inputImage, pictureName) => {
+  const options = {
+    destination: pictureName,
+    metadata: {
+        contentType: 'image/jpg',
+        cacheControl: 'public, max-age=31536000',
+        metadata: {
+          firebaseStorageDownloadTokens: uuid.v4(),
+        }
+    }
+  };
   const inputImagePath = path.join(__dirname, "../" + inputImage);
   await bucket.upload(inputImagePath, options).then((response)=> {
     console.log("Image uploaded!");
